@@ -1,5 +1,30 @@
 ifeq ($(subdir),stdio-common)
-ldbl-extra-routines += printf_size
+ldbl-extra-routines += printf_size \
+		       asprintf \
+		       dprintf \
+		       fprintf \
+		       printf \
+		       snprintf \
+		       sprintf \
+		       vasprintf \
+		       vdprintf \
+		       vfprintf \
+		       vprintf \
+		       vsnprintf \
+		       vsprintf
+
+# Printing long double values with IEEE binary128 format reuses part
+# of the internal float128 implementation (__printf_fp, __printf_fphex,
+# and __float128 variables and union members).  Thus, the compilation of
+# the following functions, must have -mfloat128 and -mabi=ibmlongdouble
+# passed to the compiler.
+CFLAGS-vfprintf-internal.c += -mfloat128 -mabi=ibmlongdouble
+
+# Basic tests for the implementation of long double with IEEE binary128
+# format and for the related redirections in installed headers.
+tests-internal += test-printf-ieee128 test-printf-ibm128
+CFLAGS-test-printf-ieee128.c += -mfloat128 -mabi=ieeelongdouble -Wno-psabi
+CFLAGS-test-printf-ibm128.c += -mabi=ibmlongdouble -Wno-psabi
 
 tests-internal += test-printf-size-ieee128 test-printf-size-ibm128
 CFLAGS-test-printf-size-ieee128.c += -mfloat128 -mabi=ieeelongdouble -Wno-psabi
