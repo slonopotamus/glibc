@@ -244,7 +244,8 @@ endif
 
 ifeq ($(subdir),misc)
 ldbl-extra-routines += err \
-		       error
+		       error \
+		       syslog
 
 tests-internal += tst-ibm128-warn tst-ieee128-warn
 tests-internal += tst-ibm128-error tst-ieee128-error
@@ -260,6 +261,46 @@ CFLAGS-tst-ibm128-error.c += -mabi=ibmlongdouble -Wno-psabi
 
 CFLAGS-tst-ieee128-warn.c += -mfloat128 -mabi=ieeelongdouble -Wno-psabi
 CFLAGS-tst-ieee128-error.c += -mfloat128 -mabi=ieeelongdouble -Wno-psabi
+
+tests-internal += test-syslog-ieee128 test-syslog-ibm128
+CFLAGS-test-syslog-ieee128.c += -mfloat128 -mabi=ieeelongdouble -Wno-psabi
+CFLAGS-test-syslog-ibm128.c += -mabi=ibmlongdouble -Wno-psabi
+
+tests-internal += test-syslog-chk-ieee128 test-syslog-chk-ibm128
+CFLAGS-test-syslog-chk-ieee128.c += -mfloat128 -mabi=ieeelongdouble -Wno-psabi
+CFLAGS-test-syslog-chk-ibm128.c += -mabi=ibmlongdouble -Wno-psabi
+
+ifeq ($(run-built-tests),yes)
+tests-special += $(objpfx)test-syslog-ieee128.out
+tests-special += $(objpfx)test-syslog-ibm128.out
+
+tests-special += $(objpfx)test-syslog-chk-ieee128.out
+tests-special += $(objpfx)test-syslog-chk-ibm128.out
+endif
+
+$(objpfx)test-syslog-ieee128.out: \
+  ../sysdeps/ieee754/ldbl-128ibm-compat/test-syslog-ldbl-compat.sh \
+  $(objpfx)test-syslog-ieee128
+	$(SHELL) $^ '$(test-program-prefix)' $@; \
+	$(evaluate-test)
+
+$(objpfx)test-syslog-ibm128.out: \
+  ../sysdeps/ieee754/ldbl-128ibm-compat/test-syslog-ldbl-compat.sh \
+  $(objpfx)test-syslog-ibm128
+	$(SHELL) $^ '$(test-program-prefix)' $@; \
+	$(evaluate-test)
+
+$(objpfx)test-syslog-chk-ieee128.out: \
+  ../sysdeps/ieee754/ldbl-128ibm-compat/test-syslog-ldbl-compat.sh \
+  $(objpfx)test-syslog-chk-ieee128
+	$(SHELL) $^ '$(test-program-prefix)' $@; \
+	$(evaluate-test)
+
+$(objpfx)test-syslog-chk-ibm128.out: \
+  ../sysdeps/ieee754/ldbl-128ibm-compat/test-syslog-ldbl-compat.sh \
+  $(objpfx)test-syslog-chk-ibm128
+	$(SHELL) $^ '$(test-program-prefix)' $@; \
+	$(evaluate-test)
 endif
 
 # Add IEEE binary128 files as make targets.
