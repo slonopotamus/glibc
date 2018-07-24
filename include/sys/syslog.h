@@ -3,7 +3,12 @@
 #include <misc/sys/syslog.h>
 #ifndef _ISOMAC
 
+#include <bits/floatn.h>
+
+#if !defined __LONG_DOUBLE_USES_FLOAT128 \
+  || (defined __LONG_DOUBLE_USES_FLOAT128 && __LONG_DOUBLE_USES_FLOAT128 == 0)
 libc_hidden_proto (syslog)
+#endif
 
 /* __vsyslog_internal uses the same mode_flags bits as
    __v*printf_internal; see libio/libioP.h.  */

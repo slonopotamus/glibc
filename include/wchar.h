@@ -114,7 +114,10 @@ libc_hidden_proto (fputws_unlocked)
 libc_hidden_proto (putwc_unlocked)
 libc_hidden_proto (putwc)
 
+#if !defined __LONG_DOUBLE_USES_FLOAT128 \
+  || (defined __LONG_DOUBLE_USES_FLOAT128 && __LONG_DOUBLE_USES_FLOAT128 == 0)
 libc_hidden_proto (vswscanf)
+#endif
 
 libc_hidden_proto (mbrtowc)
 libc_hidden_proto (wcrtomb)
