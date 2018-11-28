@@ -260,12 +260,12 @@ extern char *__fcvt (double __value, int __ndigit, int *__restrict __decpt,
 extern char *__gcvt (double __value, int __ndigit, char *__buf);
 extern int __ecvt_r (double __value, int __ndigit, int *__restrict __decpt,
 		     int *__restrict __sign, char *__restrict __buf,
-		     size_t __len);
-libc_hidden_proto (__ecvt_r)
+		     size_t __len)
+  attribute_hidden;
 extern int __fcvt_r (double __value, int __ndigit, int *__restrict __decpt,
 		     int *__restrict __sign, char *__restrict __buf,
-		     size_t __len);
-libc_hidden_proto (__fcvt_r)
+		     size_t __len)
+  attribute_hidden;
 extern char *__qecvt (long double __value, int __ndigit,
 		      int *__restrict __decpt, int *__restrict __sign);
 extern char *__qfcvt (long double __value, int __ndigit,
@@ -273,12 +273,12 @@ extern char *__qfcvt (long double __value, int __ndigit,
 extern char *__qgcvt (long double __value, int __ndigit, char *__buf);
 extern int __qecvt_r (long double __value, int __ndigit,
 		      int *__restrict __decpt, int *__restrict __sign,
-		      char *__restrict __buf, size_t __len);
-libc_hidden_proto (__qecvt_r)
+		      char *__restrict __buf, size_t __len)
+  attribute_hidden;
 extern int __qfcvt_r (long double __value, int __ndigit,
 		      int *__restrict __decpt, int *__restrict __sign,
-		      char *__restrict __buf, size_t __len);
-libc_hidden_proto (__qfcvt_r)
+		      char *__restrict __buf, size_t __len)
+  attribute_hidden;
 
 # if IS_IN (libc)
 #  undef MB_CUR_MAX
