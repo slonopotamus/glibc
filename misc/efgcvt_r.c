@@ -1,6 +1,5 @@
-/* Compatibility functions for floating point formatting, reentrant,
-   long double versions.
-   Copyright (C) 1996-2019 Free Software Foundation, Inc.
+/* Double versions of reentrant *cvt_r functions.
+   Copyright (C) 2019 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
 
    The GNU C Library is free software; you can redistribute it and/or
@@ -17,19 +16,20 @@
    License along with the GNU C Library; if not, see
    <http://www.gnu.org/licenses/>.  */
 
-#define ECVT_R qecvt_r
-#define FCVT_R qfcvt_r
-#define __ECVT_R __qecvt_r
-#define __FCVT_R __qfcvt_r
-#include <efgcvt-ldbl-macros.h>
+#define ECVT_R ecvt_r
+#define FCVT_R fcvt_r
+#define __ECVT_R __ecvt_r
+#define __FCVT_R __fcvt_r
+#include <efgcvt-dbl-macros.h>
 #include <efgcvt_r-template.c>
 
 #if LONG_DOUBLE_COMPAT (libc, GLIBC_2_0)
 # define cvt_symbol(local, symbol) \
-  versioned_symbol (libc, local, symbol, GLIBC_2_4)
+  weak_alias (local, symbol); \
+  compat_symbol (libc, local, q##symbol, GLIBC_2_0)
 #else
 # define cvt_symbol(local, symbol) \
   weak_alias (local, symbol)
 #endif
-cvt_symbol (__qfcvt_r, qfcvt_r);
-cvt_symbol (__qecvt_r, qecvt_r);
+cvt_symbol (__fcvt_r, fcvt_r);
+cvt_symbol (__ecvt_r, ecvt_r);
