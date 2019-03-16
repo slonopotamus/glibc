@@ -526,11 +526,10 @@ HEADER_ALLOWED_INCLUDES = {
     #           spawn.h -> sched.h
     "aio.h":                       [ "sys/types.h" ],
     "ftw.h":                       [ "sys/stat.h", "sys/types.h" ],
-    "glob.h":                      [ "sys/cdefs.h" ],
     "langinfo.h":                  [ "nl_types.h" ],
     "mqueue.h":                    [ "fcntl.h", "sys/types.h" ],
     "poll.h":                      [ "sys/poll.h" ],
-    "pthread.h":                   [ "sched.h", "time.h", "sys/cdefs.h" ],
+    "pthread.h":                   [ "sched.h", "time.h" ],
     "regex.h":                     [ "limits.h", "sys/types.h" ],
     "sched.h":                     [ "time.h" ],
     "semaphore.h":                 [ "sys/types.h" ],
@@ -550,7 +549,7 @@ HEADER_ALLOWED_INCLUDES = {
     "sys/time.h":                  [ "sys/select.h" ],
     "sys/types.h":                 [ "endian.h" ],
     "sys/uio.h":                   [ "sys/types.h" ],
-    "sys/un.h":                    [ "string.h", "sys/cdefs.h" ],
+    "sys/un.h":                    [ "string.h" ],
     "sys/wait.h":                  [ "signal.h" ],
 
     # POSIX networking headers
@@ -565,7 +564,6 @@ HEADER_ALLOWED_INCLUDES = {
 
     # Nonstandardized top-level headers
     "aliases.h":                   [ "sys/types.h" ],
-    "ar.h":                        [ "sys/cdefs.h" ],
     "argp.h":                      [ "ctype.h", "errno.h", "getopt.h",
                                      "limits.h", "stdio.h" ],
     "argz.h":                      [ "errno.h", "string.h" ],
@@ -601,7 +599,7 @@ HEADER_ALLOWED_INCLUDES = {
 
     # Nonstandardized sys/ headers
     "sys/acct.h":                  [ "stdint.h", "sys/types.h" ],
-    "sys/auxv.h":                  [ "elf.h", "sys/cdefs.h" ],
+    "sys/auxv.h":                  [ "elf.h" ],
     "sys/bitypes.h":               [ "sys/types.h" ],
     "sys/dir.h":                   [ "dirent.h" ],
     "sys/elf.h":                   [ "sys/procfs.h" ],
@@ -644,15 +642,15 @@ HEADER_ALLOWED_INCLUDES = {
     # Nonstandardized networking headers
     "ifaddrs.h":                   [ "sys/socket.h" ],
     "resolv.h":                    [ "arpa/nameser.h", "netinet/in.h",
-                                     "stdio.h", "sys/cdefs.h", "sys/param.h",\
+                                     "stdio.h", "sys/param.h",
                                      "sys/types.h" ],
 
     "arpa/nameser.h":              [ "arpa/nameser_compat.h", "stdint.h",
                                      "sys/param.h", "sys/types.h" ],
-    "net/ethernet.h":              [ "stdint.h", "sys/types.h", "sys/cdefs.h",
+    "net/ethernet.h":              [ "stdint.h", "sys/types.h",
                                      "net/if_ether.h" ],
     "net/if_arp.h":                [ "stdint.h", "sys/socket.h",
-                                     "sys/types.h", "sys/cdefs.h" ],
+                                     "sys/types.h" ],
     "net/if_ppp.h":                [ "net/if.h", "net/ppp_defs.h", "stdint.h",
                                      "sys/ioctl.h", "sys/types.h" ],
     "net/if_shaper.h":             [ "net/if.h", "stdint.h", "sys/ioctl.h",
@@ -667,8 +665,7 @@ HEADER_ALLOWED_INCLUDES = {
                                      "sys/types.h", "stdint.h" ],
     "netinet/if_fddi.h":           [ "stdint.h", "sys/types.h" ],
     "netinet/if_tr.h":             [ "stdint.h", "sys/types.h" ],
-    "netinet/igmp.h":              [ "netinet/in.h", "sys/cdefs.h",
-                                     "sys/types.h" ],
+    "netinet/igmp.h":              [ "netinet/in.h", "sys/types.h" ],
     "netinet/in_systm.h":          [ "stdint.h", "sys/types.h" ],
     "netinet/ip.h":                [ "netinet/in.h", "sys/types.h" ],
     "netinet/ip6.h":               [ "inttypes.h", "netinet/in.h" ],
