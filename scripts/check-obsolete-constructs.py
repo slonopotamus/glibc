@@ -533,7 +533,6 @@ HEADER_ALLOWED_INCLUDES = {
     "sched.h":                     [ "time.h" ],
     "semaphore.h":                 [ "sys/types.h" ],
     "spawn.h":                     [ "sched.h", "sys/types.h" ],
-    "syslog.h":                    [ "sys/syslog.h" ],
     "termios.h":                   [ "sys/ttydefaults.h" ],
 
     # POSIX sys/ headers
@@ -637,6 +636,11 @@ HEADER_ALLOWED_INCLUDES = {
     "sys/user.h":                  [ "sys/types.h" ],
     "sys/vfs.h":                   [ "sys/statfs.h" ],
     "sys/xattr.h":                 [ "sys/types.h" ],
+
+    # Nonstandardized sys/ headers that do nothing but include a
+    # top-level header with the same name.  These exist for
+    # compatibility with old systems that only had the sys/ name.
+    "sys/syslog.h":                [ "syslog.h" ],
 
     # Nonstandardized networking headers
     "ifaddrs.h":                   [ "sys/socket.h" ],
