@@ -527,7 +527,6 @@ HEADER_ALLOWED_INCLUDES = {
     "ftw.h":                       [ "sys/stat.h", "sys/types.h" ],
     "langinfo.h":                  [ "nl_types.h" ],
     "mqueue.h":                    [ "fcntl.h", "sys/types.h" ],
-    "poll.h":                      [ "sys/poll.h" ],
     "pthread.h":                   [ "sched.h", "time.h" ],
     "regex.h":                     [ "limits.h", "sys/types.h" ],
     "sched.h":                     [ "time.h" ],
@@ -640,6 +639,7 @@ HEADER_ALLOWED_INCLUDES = {
     # Nonstandardized sys/ headers that do nothing but include a
     # top-level header with the same name.  These exist for
     # compatibility with old systems that only had the sys/ name.
+    "sys/poll.h":                  [ "poll.h" ],
     "sys/syslog.h":                [ "syslog.h" ],
 
     # Nonstandardized networking headers
