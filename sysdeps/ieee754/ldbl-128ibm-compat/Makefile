@@ -264,6 +264,11 @@ tests-internal += tst-ibm128-efgcvt tst-ieee128-efgcvt
 
 $(objpfx)tst-ieee128-efgcvt: gnulib-tests += $(f128-loader-link)
 
+# Also needed when compiling everything with IEEE long double
+# (powerpc64le builds everything with -mabi=ieeelongdouble)
+$(objpfx)tst-dbl-efgcvt: gnulib-tests += $(f128-loader-link)
+$(objpfx)tst-ldbl-efgcvt: gnulib-tests += $(f128-loader-link)
+
 $(objpfx)tst-ibm128-%.c: tst-ldbl-%.c
 	cp $< $@
 

@@ -55,6 +55,7 @@ extern unsigned long long int __wcstoull_internal (const wchar_t *
 extern unsigned long long int ____wcstoull_l_internal (const wchar_t *,
 						       wchar_t **, int, int,
 						       locale_t);
+#include <bits/floatn.h>
 libc_hidden_proto (__wcstof_internal)
 libc_hidden_proto (__wcstod_internal)
 libc_hidden_proto (__wcstold_internal)
@@ -64,7 +65,10 @@ libc_hidden_proto (__wcstoul_internal)
 libc_hidden_proto (__wcstoull_internal)
 libc_hidden_proto (wcstof)
 libc_hidden_proto (wcstod)
+#if !defined __LONG_DOUBLE_USES_FLOAT128 \
+    || __LONG_DOUBLE_USES_FLOAT128 == 0
 libc_hidden_proto (wcstold)
+#endif
 libc_hidden_proto (wcstol)
 libc_hidden_proto (wcstoll)
 libc_hidden_proto (wcstoul)
