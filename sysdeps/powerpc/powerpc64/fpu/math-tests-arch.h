@@ -25,7 +25,8 @@
   do                                                           \
     {                                                          \
       INIT_ARCH()                                              \
-      if (!(hwcap & PPC_FEATURE_HAS_VSX )) return;             \
+      if (!((hwcap & PPC_FEATURE_HAS_VSX)                      \
+	    || (hwcap2 & PPC_FEATURE2_ARCH_2_07))) return;     \
     }                                                          \
   while (0)
 
